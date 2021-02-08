@@ -7,7 +7,7 @@ Follow the [instruction](https://docs.fluentd.org/installation) in here
 ## Run the fluentd
 Start the service:
 ```
-fluentd -c ./fluent/fluent.conf -vv
+fluentd -c ./fluent.conf -vv
 ```
 
 ## Sample request
