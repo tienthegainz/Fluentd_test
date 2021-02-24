@@ -18,7 +18,7 @@ Sending user log:
 ![log](demo_resource/user.png)
 
 ## Explain the config
-Define service to get the input through a port:
+Define service to listen to any request go to port 5001 and log them:
 ```
 <source>
   @type http
@@ -28,28 +28,32 @@ Define service to get the input through a port:
   keepalive_timeout 10s
 </source>
 ```
-The filter to input which from `app.info` tag:
+Filter request send to `app.user`, we can add time and hostname to log as well:
 ```
-<filter app.info>
+<filter app.user>
   @type record_transformer
   enable_ruby
   <record>
     host_param "#{Socket.gethostname}"
-    result_size ${record["result"].length}
     time ${time}
     tag ${tag}
   </record>
 </filter>
 ```
+
 Define the output, config the buffer to log to output every 1 min:
 ```
-<match app.info>
+<match app.*>
   @type file
-  path log/app.info.%Y-%m-%d.%H%M.log
-  buffer_type file
-  buffer_path buffer/info
-  time_slice_format %Y-%m-%d.%H%M
-  time_slice_wait 1m
+  path log/${tag}.%Y-%m-%d.%H%M
+  flush_interval 1m
+  append true
+  <buffer tag,time>
+    @type file
+    path buffer/
+    timekey 1m
+    timekey_wait 1m
+  </buffer>
   <format>
     @type json
   </format>
