@@ -11,11 +11,11 @@ fluentd -c ./fluent.conf -vv
 ```
 
 ## Sample request
-Sending info log:
-![log](demo_resource/info.png)
+Sending crawl log:
+![log](demo_resource/crawl.png)
 
-Sending erre log:
-![log](demo_resource/error.png)
+Sending user log:
+![log](demo_resource/user.png)
 
 ## Explain the config
 Define service to get the input through a port:
@@ -58,3 +58,8 @@ Define the output, config the buffer to log to output every 1 min:
 
 ## Demo video
 ![Demo](demo_resource/demo.gif)
+
+## 日本語
+- Fluentdの使用の目的はロッグをフォーマットしたり、管理したり、ストレージとかデータベースとかに保存したりするということです。
+- Fluentdは独立サービスとして実行できます。他のサビース、WebAppとかMobileAppとか、がロッグを送って、Fluentdがそのロッグを集めて、管理でします。
+- データがローカルのバッファに保存し、設定された時間後で、ググルストレージに保存します。
