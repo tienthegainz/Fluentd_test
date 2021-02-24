@@ -61,5 +61,5 @@ Define the output, config the buffer to log to output every 1 min:
 
 ## 日本語
 - Fluentdの使用の目的はロッグをフォーマットしたり、管理したり、ストレージとかデータベースとかに保存したりするということです。
-- Fluentdは独立サービスとして実行できます。他のサビース、WebAppとかMobileAppとか、がロッグを送って、Fluentdがそのロッグを集めて、管理でします。
+- Fluentdは独立サービスとして実行できます。他のサビース、WebAppとかMobileAppとか、がロッグを送って、Fluentdがそのロッグを集めて、管理できます。
 - データがローカルのバッファに保存し、設定された時間後で、ググルストレージに保存します。
